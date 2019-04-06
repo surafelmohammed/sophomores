@@ -1,2 +1,2 @@
-<a href="https://www.dictionary.com/e/sophomore/">#sophomoressophomores</a>
-sophomores is a name for android mobile application where students share their resources one another.
+#sophomores
+<a href="https://www.dictionary.com/e/sophomore/">sophomores</a> is a name for android mobile application where students share their resources one another.
