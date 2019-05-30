@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+            android:id="@+id/home"
+            android:orderInCategory="50"
+            android:title="Home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:checkable="true"
+    />
+
+
+    <item
+            android:id="@+id/upload"
+            android:orderInCategory="80"
+            android:title="Upload"
+            android:icon="@drawable/ic_cloud_upload_black_24dp"
+            android:checkable="true"
+    />
+
+    <item
+            android:id="@+id/addLocation"
+            android:orderInCategory="100"
+            android:title="Profile"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:checkable="true"
+    />
+    <item
+
+            android:id="@+id/language"
+            android:orderInCategory="200"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Setting"
+            android:checkable="true"
+    />
+
+    <item
+            android:id="@+id/verifyLocation"
+            android:orderInCategory="300"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="My uploads"
+    />
+
+
+</menu>
