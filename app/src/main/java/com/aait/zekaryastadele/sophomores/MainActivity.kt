@@ -2,34 +2,30 @@ package com.aait.zekaryastadele.sophomores
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.constraintlayout.widget.Guideline
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
+import com.aait.zekaryastadele.sophomores.homeMenu.MainContentFragment
+import com.aait.zekaryastadele.sophomores.uploadMenu.UploadFragment
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.tabs.TabLayout
 
-import kotlinx.android.synthetic.main.activity_main.*
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
 
-    lateinit var drawerLayout : DrawerLayout
+    lateinit var drawerLayout: DrawerLayout
 
-    lateinit var toggle: ActionBarDrawerToggle
+    lateinit var navigationView: NavigationView
 
-    lateinit var toolbar: androidx.appcompat.widget.Toolbar
-
-
-    lateinit var navigationView : NavigationView
+    lateinit var mainContentFragment: MainContentFragment
 
 
-    lateinit var tabLayout : TabLayout
 
-    lateinit var viewPager : ViewPager
 
+    lateinit var guideline: Guideline
+
+    var inPortraitMode : Boolean = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,72 +33,102 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        toolbar = findViewById(R.id.toolbar)
+
+
+
+
+        plugDefaultFragments()
+
+
+
+        setUpToolBar()
+
+
+
 
         navigationView = findViewById(R.id.navigationView)
-
-        drawerLayout = drawer
-
-        //toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
-        toggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
-
-        drawerLayout.addDrawerListener(toggle)
-
-        toggle.syncState()
-
-
-        viewPager = findViewById(R.id.view_pager)
-
-        tabLayout = findViewById(R.id.tab_layout)
-
-
-
-
-        setUpViewPager()
-
-
-
-
-
-
+        navigationView.setNavigationItemSelectedListener(this)
 
 
     }
 
-    fun setUpViewPager(){
-            val fragmentAdapter = MyPagerAdapter(supportFragmentManager)
-            viewPager.adapter = fragmentAdapter
-            tabLayout.setupWithViewPager(viewPager)
+    fun plugDefaultFragments(){
+        val transaction = supportFragmentManager.beginTransaction()
+        mainContentFragment = MainContentFragment()
+        transaction.add(R.id.bottomFrame,mainContentFragment)
 
+
+
+        transaction.commit()
     }
 
 
-    class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> {
-                    RecommendationFragment()
-                }
-                else -> {
-                    return CatalogFragment()
-                }
+
+    fun setUpToolBar(){
+        navigationView = findViewById(R.id.navigationView)
+        drawerLayout = findViewById(R.id.drawer)
+    }
+
+
+
+
+
+
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId){
+            R.id.home -> {
+                Toast.makeText(this,"home",Toast.LENGTH_LONG).show()
+                homeHandler()
             }
-        }
-
-        override fun getCount(): Int {
-            return 2
-        }
-
-        override fun getPageTitle(position: Int): CharSequence {
-            return when (position) {
-                0 -> "Recommendation"
-                else -> {
-                    return "Catalog"
-                }
+            R.id.upload -> {
+                Toast.makeText(this,"upload",Toast.LENGTH_LONG).show()
+                uploadHandler()
             }
+            R.id.profile -> {Toast.makeText(this,"profile",Toast.LENGTH_LONG).show()}
+            R.id.setting -> {Toast.makeText(this,"setting",Toast.LENGTH_LONG).show()}
+            R.id.myuploads -> {Toast.makeText(this,"my upload",Toast.LENGTH_LONG).show()}
         }
+
+
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+
+        return true
     }
+
+    fun homeHandler(){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.bottomFrame,mainContentFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+
+
+    }
+
+    fun uploadHandler(){
+        val transaction = supportFragmentManager.beginTransaction()
+        val uploadFragment = UploadFragment()
+
+        transaction.replace(R.id.bottomFrame,uploadFragment)
+
+        transaction.addToBackStack(null)
+
+        transaction.commit()
+
+
+
+    }
+
+    fun profileHandler(){
+
+    }
+
+
+
+
 
 
 

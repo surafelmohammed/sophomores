@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/image_16"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/avsix"
     android:layout_height="200dp">
 
 
@@ -9,9 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#9759AD24"
         android:padding="12dp"
         android:layout_alignParentBottom="true">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/avfour"
+                app:civ_border_color="#EEEEEE"
+                app:civ_border_width="4dp"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="10"
+                app:civ_shadow_color="#ccc"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -20,15 +30,16 @@
             android:id="@+id/longitude"
             android:layout_marginBottom="5dp"
             android:textSize="15sp"
-            android:textColor="#fff"/>
+            android:textColor="#000"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/latitude"
+
             android:text="ZekaryasDinku@gmail.com"
             android:textSize="14sp"
-            android:textColor="#fff"/>
+            android:textColor="#000"/>
     </LinearLayout>
 
 
